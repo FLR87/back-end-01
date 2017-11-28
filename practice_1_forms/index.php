@@ -65,8 +65,7 @@
             $nameVal = clean($_POST['name']);          //прогоняем данные имени через функцию очистки
             $_POST['name'] = $nameVal;                 //перезаписываем данные имени в $_POST на очищенные данные
         }else {
-            $nameErr = "Введите своё имя";              //если имя не введено, то выдаём ошибку и ничего не записываем в имя $_POST
-            $_POST['name'] = '';}
+            $nameErr = "Введите своё имя";}          //если имя не введено, то выдаём ошибку и ничего не записываем в имя $_POST
 
         if (!empty($_POST['email'])) {
             $email = clean($_POST['email']);            //прогоняем данные имейла через функцию очистки
@@ -76,11 +75,9 @@
                 $emailVal = strtolower($emailVal);
                 $_POST['email'] = $emailVal;
             } else {
-                $emailErr = "Введите правильный адрес электронной почты"; //выводим ошибку в случае неправильного ввода
-                $_POST['email'] = '';}
+                $emailErr = "Введите правильный адрес электронной почты";} //выводим ошибку в случае неправильного ввода
         }else {
-            $emailErr = "Введите адрес электронной почты"; //выводим ошибку в случае отсутствия ввода данных
-            $_POST['email'] = '';}
+            $emailErr = "Введите адрес электронной почты";} //выводим ошибку в случае отсутствия ввода данных
 
         if (!empty($_POST['login']))  {
             $login = clean($_POST['login']);
@@ -88,11 +85,9 @@
                 $loginVal = $login;
                 $_POST['login'] = $loginVal;
             } else {
-                $loginErr = "Введите логин в соответствии с требованиями";
-                $_POST['login'] = '';}
+                $loginErr = "Введите логин в соответствии с требованиями";}
         }else {
-            $loginErr = "Ведите логин";
-            $_POST['login'] = '';}
+            $loginErr = "Ведите логин";}
 
         if (!empty($_POST['password']))  {
             $password = clean($_POST['password']);
@@ -100,11 +95,9 @@
                 $passwordVal = $password;
                 $_POST['password'] = $passwordVal;
             } else {
-                $passwordErr = "Введите пароль в соответствии с требованиями";
-                $_POST['password'] = '';}
+                $passwordErr = "Введите пароль в соответствии с требованиями";}
         }else {
-            $passwordErr = "Ведите пароль";
-            $_POST['password'] = '';}
+            $passwordErr = "Ведите пароль";}
 
         if (!empty($_POST['date']))  {                     // проверка ввода даты
             $date = $_POST['date'];
@@ -159,7 +152,11 @@
         ?>
         <br>
         <?php
-        echo "Имя: " .$nameVal. "; <br> e-mail: " .$emailVal. "; <br> Логин: " .$loginVal. "; <br> Дата рождения: " .$date.".";
+        if ($nameVal && $emailVal && $loginVal && $passwordVal && $_POST['date']) {
+            echo "Имя: " .$nameVal. "; <br> e-mail: " .$emailVal. "; <br> Логин: " .$loginVal. "; <br> Дата рождения: " .$date.".";
+        } else {
+            echo "Имя: ; <br> e-mail: ; <br> Логин: ; <br> Дата рождения: ;";}
+
         ?>
     </div>
 </div>
